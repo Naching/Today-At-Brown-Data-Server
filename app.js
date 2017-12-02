@@ -1,6 +1,11 @@
 const express = require('express')
-const app = express()
+const app = express();
 
-app.use('/static', express.static('days'))
+app.use((req, res, next) => {
+  console.log(req.url);
+  next();
+})
 
-app.listen(3000, () => console.log('App listening on port 3000'))
+app.use('/static', express.static('days'));
+
+app.listen(3000, () => console.log('App listening on port 3000'));
